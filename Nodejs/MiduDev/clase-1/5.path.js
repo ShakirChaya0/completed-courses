@@ -10,8 +10,8 @@ console.log(filePath)
 const base = path.basename('/tmp/midu-secret-files/password.txt')
 console.log(base)
 
-const filename = path.basename('/tmp/midu-secret-files/password.txt', '.txt')
+const filename = path.basename('/tmp/midu-secret-files/password.txt', '.txt') // quitar la extensión
 console.log(filename)
 
-const extension = path.extname('my.super.image.jpg')
+const extension = path.extname('my.super.image.jpg') // obtener la extensión del archivo
 console.log(extension)

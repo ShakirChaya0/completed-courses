@@ -1,0 +1,24 @@
+{
+  "name": "curso-node",
+  "version": "1.0.0",
+  "description": "Curso de node de Midu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShakirChaya0/completed-courses.git"
+  },
+  "keywords": [
+    "curso",
+    "node",
+    "nodejs"
+  ],
+  "author": "Shakir Chaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShakirChaya0/completed-courses/issues"
+  },
+  "homepage": "https://github.com/ShakirChaya0/completed-courses#readme"
+}

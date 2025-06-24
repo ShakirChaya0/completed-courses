@@ -17,7 +17,8 @@ async function init () {
   console.log('segundo texto:', secondText)    
 }
 
-init()
+init() // Lo mismo que usar un IIFE
+
 
 // IIFE - Inmediatly Invoked Function Expression
 // ;(
