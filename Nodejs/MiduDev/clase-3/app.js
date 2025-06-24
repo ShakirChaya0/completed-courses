@@ -1,6 +1,7 @@
 const express = require('express');
 const crypto = require('node:crypto');
 const movies = require('./movies.json');
+const { validateMovie } = require('./schemas/movies'); // Importamos la función de validación
 
 const app = express();
 app.disable('x-powered-by'); // Desactiva el header x-powered-by
@@ -26,20 +27,22 @@ app.get('/movies/:id', (req, res) => { // path-to-regexp
 })
 
 app.post('/movies', (req, res) => {
-    const { title, genre, year, director, duration, rate, poster  } = req.body;
+
+    const result = validateMovie(req.body);
+
+    if(result.error) {
+        // Podríamos enviar un error 422 Unprocessable Entity
+        return res.status(400).json({error: JSON.parse(JSON.stringify(result.error))});
+    }
 
     const newMovie = {
         id: crypto.randomUUID(),
-        title,
-        genre: Array.isArray(genre) ? genre : [genre],
-        year,
-        director,
-        duration,
-        rate,
-        poster
+        ...result.data, // Desestructuración del objeto validado
     };
 
     movies.push(newMovie)
+
+    res.status(201).json(newMovie);
 })
 
 const PORT = process.env.PORT ?? 1234;
