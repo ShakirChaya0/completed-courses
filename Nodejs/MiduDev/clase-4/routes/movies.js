@@ -1,22 +1,11 @@
-import { Router } from "express";
-import movies from "../movies.json" with { type: "json" };
+import { Router } from 'express'
 
-const router = Router();
+import { MovieController } from '../controllers/movies.js'
 
-router.get("/", (req, res) => {
-    const { genre } = req.query
-    if (genre) {
-        const filteredMovies = movies.filter(
-        movie => movie.genre.some(g => g.toLowerCase() === genre.toLowerCase())
-    )
-    return res.json(filteredMovies)
-  }
-  res.json(movies)
-})
+export const moviesRouter = Router()
 
-router.get("/:id", (req, res) => {  
-    const { id } = req.params
-    const movie = movies.find(movie => movie.id === id)
-    if (movie) return res.json(movie)
-    res.status(404).json({ message: 'Movie not found' })
-})
+moviesRouter.get('/', MovieController.getAll)
+moviesRouter.post('/', MovieController.create)
+moviesRouter.get('/:id', MovieController.getById)
+moviesRouter.delete('/:id', MovieController.delete)
+moviesRouter.patch('/:id', MovieController.update)

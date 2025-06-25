@@ -1,14 +1,12 @@
 import express, { json } from 'express' // require -> commonJS
-import { moviesRouter } from './routes/movies'
-import { corsMiddleware } from './middlewares/cors'
-
+import { moviesRouter } from './routes/movies.js'
+import { corsMiddleware } from './middlewares/cors.js'
 
 const app = express()
 app.use(json())
-app.use(corsMiddleware()) // habilitar CORS
-app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
+app.disable('x-powered-by')
 
-app.use('/movies', moviesRouter) 
+app.use('/movies', moviesRouter)
 
 const PORT = process.env.PORT ?? 1234
 
